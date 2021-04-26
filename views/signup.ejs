@@ -1,0 +1,26 @@
+<%- include('./include/header.ejs') %>
+    <div class="container">
+        <% if(errorMessage) { %>
+            <%- include('./include/message.ejs') %>
+        <% } %>
+        
+        <h1 class="text-center mt-4 mb-4">Sign Up</h1>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" value="<%= hasError ? user.email : '' %>" class="form-control" type="text" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" value="<%= hasError ? user.password : '' %>" class="form-control <%= hasError ? 'is-invalid' : '' %> " type="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input id="confirmPassword" class="form-control <%= hasError ? 'is-invalid' : '' %>" type="password" name="confirmPassword">
+            </div>
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+<%- include('./include/footer.ejs') %>
